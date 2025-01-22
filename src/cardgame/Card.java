@@ -52,7 +52,7 @@ public class Card {
     /**
      * @param suit the suit to set
      */
-    public void setSuit(Suit suit) {
+    public void setSuit(Suit suit) { /** kaif*/
         this.suit = suit;
     }
     
