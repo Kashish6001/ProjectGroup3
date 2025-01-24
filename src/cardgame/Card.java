@@ -8,8 +8,15 @@ package cardgame;
 /**
  *
  * @author fagun
+ * 
+ * Modifier: 991732412_MohammadKaif_Shaikh
+ * Date: 2025-01-23
  */
 public class Card {
+
+    Card(int value, Suit suit) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
      public enum Suit
    {
        HEARTS, CLUBS,SPADES, DIAMONDS
