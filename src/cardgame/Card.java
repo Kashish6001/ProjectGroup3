@@ -17,6 +17,10 @@ public class Card {
     Card(int value, Suit suit) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    Card(int userNumber, String userSuit) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
      public enum Suit
    {
        HEARTS, CLUBS,SPADES, DIAMONDS
