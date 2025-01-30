@@ -1,3 +1,9 @@
+/**
+ * @author Diya Patel
+ * @modified_by Diya Patel
+ * @student_id 123456
+ * @date 2025-01-29
+ */
 package cardgame;
 
 import java.util.Random;
