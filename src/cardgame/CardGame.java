@@ -7,6 +7,7 @@
 package cardgame;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class CardGame {
     private Card[] magicHand = new Card[7]; // Array to store 7 cards
@@ -52,9 +53,37 @@ public class CardGame {
         }
     }
 
+    public void userCardCheck() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("\nEnter a card number (1-13): ");
+        int userNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        
+        System.out.println("Enter a suit (Hearts, Diamonds, Clubs, Spades): ");
+        String userSuit = scanner.nextLine();
+
+        Card userCard = new Card(userNumber, userSuit);
+        
+        boolean found = false;
+        for (Card card : magicHand) {
+            if (card.equals(userCard)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("🎉 Your chosen card is in the magic hand! 🎉");
+        } else {
+            System.out.println("❌ Your chosen card is NOT in the magic hand. ❌");
+        }
+    }
+
     public static void main(String[] args) {
         CardGame game = new CardGame();
         game.printHand();
         game.checkLuckyCard();
+        game.userCardCheck();
     }
 }
