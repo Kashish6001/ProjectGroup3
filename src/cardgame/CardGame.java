@@ -1,6 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+/**
+ * @author Diya Patel
+ * @modified_by Diya Patel
+ * @student_id 991752600
+ * @date 2025-01-29
  */
 package cardgame;
 
@@ -8,71 +10,80 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class CardGame {
-
-    private final Card[] hand;
-    private static final int HAND_SIZE = 7;
-    private static final Card.Suit[] suits = Card.Suit.values();
+    private Card[] magicHand = new Card[7]; // Array to store 7 cards
+    private Card luckyCard; // Hardcoded lucky card
 
     public CardGame() {
-        hand = new Card[HAND_SIZE];
-        generateHand();
-    }
-
-    private void generateHand() {
-        Random random = new Random();
-        for (int i = 0; i < HAND_SIZE; i++) {
-            int value = random.nextInt(13) + 1; // Random value between 1 and 13
-            Card.Suit suit = suits[random.nextInt(suits.length)]; // Random suit
-            hand[i] = new Card(value, suit);
+        String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+        Random rand = new Random();
+        
+        // Generate 7 random cards
+        for (int i = 0; i < magicHand.length; i++) {
+            int number = rand.nextInt(13) + 1; // 1 to 13
+            String suit = suits[rand.nextInt(4)];
+            magicHand[i] = new Card(number, suit);
         }
+
+        // Hardcoded lucky card
+        luckyCard = new Card(7, "Hearts"); // Change values as needed
     }
 
     public void printHand() {
         System.out.println("Magic Hand:");
-        for (Card card : hand) {
-            System.out.println(card.getValue() + " of " + card.getSuit());
+        for (Card card : magicHand) {
+            System.out.println(card);
         }
     }
 
-    private boolean isCardInHand(Card card) {
-        for (Card c : hand) {
-            if (c.equals(card)) {
-                return true;
+    public void checkLuckyCard() {
+        System.out.println("\nChecking for the lucky card: " + luckyCard);
+        
+        boolean found = false;
+        for (Card card : magicHand) {
+            if (card.equals(luckyCard)) {
+                found = true;
+                break;
             }
         }
-        return false;
+
+        if (found) {
+            System.out.println("🎉 Congratulations! Your lucky card is in the magic hand! 🎉");
+        } else {
+            System.out.println("❌ Sorry, your lucky card is not in the magic hand. ❌");
+        }
+    }
+
+    public void userCardCheck() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("\nEnter a card number (1-13): ");
+        int userNumber = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        
+        System.out.println("Enter a suit (Hearts, Diamonds, Clubs, Spades): ");
+        String userSuit = scanner.nextLine();
+
+        Card userCard = new Card(userNumber, userSuit);
+        
+        boolean found = false;
+        for (Card card : magicHand) {
+            if (card.equals(userCard)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            System.out.println("🎉 Your chosen card is in the magic hand! 🎉");
+        } else {
+            System.out.println("❌ Your chosen card is NOT in the magic hand. ❌");
+        }
     }
 
     public static void main(String[] args) {
         CardGame game = new CardGame();
         game.printHand();
-
-        // Lucky card
-        Card luckyCard = new Card(7, Card.Suit.HEARTS); // Hardcoded lucky card
-        System.out.println("\nLucky Card: " + luckyCard.getValue() + " of " + luckyCard.getSuit());
-        if (game.isCardInHand(luckyCard)) {
-            System.out.println("You win! Lucky card is in the magic hand.");
-        } else {
-            System.out.println("You lose! Lucky card is not in the magic hand.");
-        }
-
-        try ( // Task 8: picks a card
-                Scanner scanner = new Scanner(System.in)) {
-            System.out.println("\nPick a card:");
-            System.out.print("Enter a card number (1 for Ace, 11 for Jack, 12 for Queen, 13 for King): ");
-            int userValue = scanner.nextInt();
-            System.out.println("Choose a suit: 1 for HEARTS, 2 for DIAMONDS, 3 for CLUBS, 4 for SPADES");
-            int suitChoice = scanner.nextInt();
-            Card.Suit userSuit = suits[suitChoice - 1];
-            
-            Card userCard = new Card(userValue, userSuit);
-            System.out.println("Your card: " + userCard.getValue() + " of " + userCard.getSuit());
-            
-            if (game.isCardInHand(userCard)) {
-                System.out.println("You win! Your card is in the magic hand.");
-            } else {
-                System.out.println("You lose! Your card is not in the magic hand.");
-            }
-        }
+        game.checkLuckyCard();
+        game.userCardCheck();
     }
 }
