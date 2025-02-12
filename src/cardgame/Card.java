@@ -9,8 +9,7 @@ package cardgame;
  *
  * @author fagun
  * 
- * Modifier: 991732412_MohammadKaif_Shaikh
- * Date: 2025-01-23
+ *Kashish Sharma, Krishna Sharma, Shahinpreet Kaur
  */
 public class Card {
 
