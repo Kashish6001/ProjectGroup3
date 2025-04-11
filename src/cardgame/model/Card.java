@@ -1,12 +1,12 @@
-package cardgame;
-
+package cardgame.model;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
 /**
- *
+ * Applies SRP: Represents one card with suit and value only.
+ * Applies Encapsulation: Private fields with access through methods.
  * @author fagun
  */
 public class Card {
@@ -18,8 +18,12 @@ public class Card {
         this.value = value;
     }
 
-    public int getValue() {
-        return value.getCardValue();
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public Value getValue() {
+        return value;
     }
 
     @Override
